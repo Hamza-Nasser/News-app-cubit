@@ -1,7 +1,6 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news/layout/cubit/states.dart';
 import 'package:news/modules/business_screen.dart';
@@ -48,22 +47,9 @@ class NewsCubit extends Cubit<NewsStates> {
   }
 
   List<dynamic> business = [];
-  late String riotgames;
 
   void getBusniessData() {
     emit(NewsGetBusinessLoadingState());
-    //   DioHelper.dioGetData(path: '/val/status/v1/platform-data',
-    //     query: {
-    //       'api_key':'RGAPI-4a510736-de64-409f-a1e5-deb111d7bf27'
-    //     }
-    //   ).then((value){
-    //     riotgames = value.data['name'];
-    //     print(riotgames);
-    //     emit(NewsGetDataBusinessSuccessState());
-    //   }).catchError((onError){
-    //     print('Error retriveing data: $onError');
-    //     emit(NewsGetDataBusinessFailedState(onError.toString()));
-    //   });
     DioHelper.dioGetData(path: 'v2/top-headlines', query: {
       'country': 'eg',
       'category': 'business',
