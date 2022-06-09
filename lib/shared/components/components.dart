@@ -1,7 +1,7 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 
-Widget buildNewsItem(articale) {
+Widget buildNewsItem(articale, context) {
   return InkWell(
     onTap: (){
 
@@ -32,10 +32,7 @@ Widget buildNewsItem(articale) {
                     maxLines: 3,
                     textDirection: TextDirection.rtl,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: Theme.of(context).textTheme.bodyText1
                   ),
                   Text(
                     "${articale['publishedAt']}",
@@ -61,7 +58,7 @@ Widget articleBuilder(list) {
       condition: list.isNotEmpty,
       builder: (context) => ListView.separated(
             physics: const BouncingScrollPhysics(),
-            itemBuilder: (context, index) => buildNewsItem(list[index]),
+            itemBuilder: (context, index) => buildNewsItem(list[index], context),
             separatorBuilder: (context, index) => const SizedBox(
               height: 8,
             ),

@@ -13,6 +13,7 @@ class NewsCubit extends Cubit<NewsStates> {
   NewsCubit() : super(NewsInitialState());
 
   static NewsCubit get(context) => BlocProvider.of(context);
+
   int currentModuleIndex = 0;
   List<BottomNavigationBarItem> bottomNavigationBarItems = [
     const BottomNavigationBarItem(
@@ -47,13 +48,14 @@ class NewsCubit extends Cubit<NewsStates> {
   }
 
   List<dynamic> business = [];
+  String apiKey = '688d756d00804fa5afd183478b18a442';
 
   void getBusniessData() {
     emit(NewsGetBusinessLoadingState());
     DioHelper.dioGetData(path: 'v2/top-headlines', query: {
       'country': 'eg',
       'category': 'business',
-      'apiKey': '65f7f556ec76449fa7dc7c0069f040ca'
+      'apiKey': apiKey
     }).then((value) {
       business = value.data['articles'];
       print(business[0]['title']);
@@ -69,7 +71,7 @@ class NewsCubit extends Cubit<NewsStates> {
     DioHelper.dioGetData(path: 'v2/top-headlines', query: {
       'country': 'eg',
       'category': 'sports',
-      'apiKey': '65f7f556ec76449fa7dc7c0069f040ca'
+      'apiKey': apiKey
     }).then((value) {
       sports = value.data['articles'];
       print(sports[0]['title']);
@@ -85,7 +87,7 @@ class NewsCubit extends Cubit<NewsStates> {
     DioHelper.dioGetData(path: 'v2/top-headlines', query: {
       'country': 'eg',
       'category': 'science',
-      'apiKey': '65f7f556ec76449fa7dc7c0069f040ca'
+      'apiKey': apiKey
     }).then((value) {
       science = value.data['articles'];
       print(science[0]['title']);
