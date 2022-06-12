@@ -26,7 +26,6 @@ class NewsScreen extends StatelessWidget {
 
                   },
                   icon: const Icon(Icons.brightness_4_outlined),
-                  color: AppCubit.get(context).isDark?Colors.white:Colors.black,
                 )
               ],
             ),

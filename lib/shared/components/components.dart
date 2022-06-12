@@ -53,7 +53,7 @@ Widget buildNewsItem(articale, context) {
   );
 }
 
-Widget articleBuilder(list) {
+Widget articleBuilder(list, bool isSearch) {
   return ConditionalBuilder(
       condition: list.isNotEmpty,
       builder: (context) => ListView.separated(
@@ -64,5 +64,5 @@ Widget articleBuilder(list) {
             ),
             itemCount: list.length,
           ),
-      fallback: (context) => const Center(child: CircularProgressIndicator()));
+      fallback: (context) => !isSearch?const Center(child: CircularProgressIndicator()):Container());
 }

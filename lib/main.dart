@@ -43,13 +43,12 @@ class NewsApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               theme: ThemeData(
                 scaffoldBackgroundColor: Colors.white,
-                primaryIconTheme: const IconThemeData(color: Colors.black),
-                iconTheme: const IconThemeData(color: Colors.black),
                 primarySwatch: Colors.deepOrange,
                 floatingActionButtonTheme: const FloatingActionButtonThemeData(
                   elevation: 0.0,
                 ),
                 appBarTheme: const AppBarTheme(
+                iconTheme: IconThemeData(color: Colors.black),
                   backgroundColor: Colors.white,
                   elevation: 0.0,
                   titleTextStyle: TextStyle(
@@ -76,6 +75,7 @@ class NewsApp extends StatelessWidget {
                   elevation: 0.0,
                 ),
                 appBarTheme: const AppBarTheme(
+                  iconTheme: IconThemeData(color: Colors.white),
                   backgroundColor: Color.fromARGB(255, 20, 29, 45),
                   elevation: 0.0,
                   titleTextStyle: TextStyle(
@@ -100,7 +100,6 @@ class NewsApp extends StatelessWidget {
                     color: Colors.white,
                   ),
                 ),
-                iconTheme: const IconThemeData(color: Colors.white),
               ),
               themeMode: AppCubit.get(context).isDark
                   ? ThemeMode.dark

@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news/layout/cubit/states.dart';
 import 'package:news/modules/business_screen.dart';
 import 'package:news/modules/science_screen.dart';
+import 'package:news/modules/search/search_screen.dart';
 import 'package:news/modules/settings_screen.dart';
 import 'package:news/modules/sports_screen.dart';
 import 'package:news/shared/network/remote/dio_helper.dart';
@@ -29,6 +30,10 @@ class NewsCubit extends Cubit<NewsStates> {
       label: 'Science',
     ),
     const BottomNavigationBarItem(
+      icon: Icon(Icons.search_rounded),
+      label: 'Search',
+    ),
+    const BottomNavigationBarItem(
       icon: Icon(Icons.settings),
       label: 'Settings',
     ),
@@ -37,13 +42,14 @@ class NewsCubit extends Cubit<NewsStates> {
     const BusinessScreen(),
     const SportsScreen(),
     const ScienceScreen(),
+    const SearchScreen(),
     const SettingsScreen()
+
   ];
   void changeModuleIndex(int index) {
     currentModuleIndex = index;
     if(index == 1) getSportsData();
     if(index == 2) getScienceData();
-    
     emit(ChangeBottomNavBarState());
   }
 
@@ -95,6 +101,21 @@ class NewsCubit extends Cubit<NewsStates> {
     }).catchError((onError) {
       print('Error retriveing data: $onError');
       emit(NewsGetDataScienceFailedState(onError.toString()));
+    });
+  }
+  List<dynamic> search= [];
+  void getSearchData(String searchQuery) {
+    emit(NewsGetSearchLoadingState());
+    DioHelper.dioGetData(path: 'v2/everything', query: {
+      'q': searchQuery,
+      'apiKey': apiKey
+    }).then((value) {
+      search = value.data['articles'];
+      print(search[0]['title']);
+      emit(NewsGetDataSearchSuccessState());
+    }).catchError((onError) {
+      print('Error retriveing data: $onError');
+      emit(NewsGetDataSearchFailedState(onError.toString()));
     });
   }
 }

@@ -29,3 +29,11 @@ class NewsGetDataScienceFailedState extends NewsStates{
   final String error;
   NewsGetDataScienceFailedState(this.error);
 }
+
+class NewsGetSearchLoadingState extends NewsStates{}
+
+class NewsGetDataSearchSuccessState extends NewsStates{}
+class NewsGetDataSearchFailedState extends NewsStates{
+  final String error;
+  NewsGetDataSearchFailedState(this.error);
+}
